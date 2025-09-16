@@ -16,7 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->string('title');
             $table->text('body');
-            $table->date('send_date');
+            $table->string('recipient')->nullable();
+            $table->date('send_date')->nullable();
             $table->boolean('is_published')->default(false);
             $table->integer('heart_count')->default(0);
             $table->timestamps();

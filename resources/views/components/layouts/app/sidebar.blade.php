@@ -1,7 +1,11 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark" xmlns:x-w="http://www.w3.org/1999/html">
     <head>
         @include('partials.head')
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        @wireUiScripts
+        <script src="//unpkg.com/alpinejs" defer></script>
     </head>
     <body class="min-h-screen bg-white dark:bg-zinc-800">
         <flux:sidebar sticky stashable class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
@@ -16,6 +20,16 @@
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
+
+            <flux:dropdown>
+                <flux:navlist.item icon="notebook" icon:trailing="chevron-down">Notes</flux:navlist.item>
+
+                <flux:menu>
+                    <flux:menu.item :href="route('notes.index')">All</flux:menu.item>
+                    <flux:menu.item :href="route('notes.create')">New</flux:menu.item>
+
+                </flux:menu>
+            </flux:dropdown>
 
             <flux:spacer />
 
@@ -128,5 +142,8 @@
         {{ $slot }}
 
         @fluxScripts
+        @livewireScripts
+        <script src="//unpkg.com/alpinejs" defer></script>
+        <script src="../../../../../node_modules/flowbite/dist/flowbite.min.js"></script>
     </body>
 </html>

@@ -8,8 +8,16 @@ Route::get('/', function () {
 })->name('home');
 
 Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
+    ->middleware('auth')
     ->name('dashboard');
+
+Route::view('notes', 'notes.index')
+    ->middleware('auth')
+    ->name('notes.index');
+
+Route::view('notes/create', 'notes.create')
+    ->middleware('auth')
+    ->name('notes.create');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');

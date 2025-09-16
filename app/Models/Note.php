@@ -23,4 +23,8 @@ class Note extends Model
                     ->where('is_published', true)
                     ->get();
     }
+
+    protected $casts = [
+        'send_date' => 'date',
+    ];
 }
