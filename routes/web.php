@@ -15,9 +15,13 @@ Route::view('notes', 'notes.index')
     ->middleware('auth')
     ->name('notes.index');
 
-Route::view('notes/create', 'notes.create')
+Route::view('notes/create', 'notes.create-note')
     ->middleware('auth')
     ->name('notes.create');
+
+Volt::route('notes/{note}/edit', 'notes.edit-note')
+    ->middleware('auth')
+    ->name('notes.edit');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
